@@ -1,0 +1,16 @@
+# Build output (CMake is the source of truth; never commit generated projects)
+/build/
+/build-*/
+/tools/
+*.xcodeproj/
+CMakeUserPresets.json
+
+# macOS / editors
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Never commit secrets
+*.key
+.env*
