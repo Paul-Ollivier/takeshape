@@ -33,10 +33,29 @@
 - Xcode project generates; the `Restyle_AU` scheme launches `/Applications/Logic Pro.app`.
 
 **Not yet verified (needs manual run)**
-- pluginval strictness 5 (`scripts/pluginval.sh 5`).
 - Logic Pro: ARA load, inspector, pass-through audio.
 - REAPER: not installed on this machine.
 - Ableton Live 13 beta: only Live 12 is installed (no ARA support in 12).
+
+## 2026-11-14 — CI + pluginval
+
+**Verified (CLI, clean build at the new repo path `~/Developer/DAWIA`)**
+- `scripts/ci.sh release`: build, 3/3 unit tests, install, `auval -strict` (AU VALIDATION SUCCEEDED),
+  pluginval strictness 5 on VST3 and AU: **SUCCESS** for both. Debug build: same result.
+- pluginval AU warning "Current program is -1... Is this correct?" is benign: the processor reports
+  1 program / current 0; the -1 comes from JUCE's AU wrapper (no factory presets). Revisit if we add presets.
+
+**Added**
+- GitHub Actions workflow `.github/workflows/ci.yml`: one `macos-15` job running `scripts/ci.sh release`
+  on PRs, pushes to `main` and manual dispatch. Private repo: macOS minutes bill at 10x, so it's a single job
+  with in-progress runs cancelled on new pushes.
+
+**Gotchas hit**
+- Moving the repo invalidates CMake caches (`CMakeCache.txt` stores the absolute source path). Delete
+  `build/ninja-*` and `build-xcode` and regenerate.
+- macOS `/bin/bash` is 3.2: with `set -u`, `"${arr[@]}"` on an empty array errors. Use `${arr[@]+"${arr[@]}"}`.
+- `scripts/test.sh` always ran the `ninja-debug` ctest preset; it now follows the build config
+  (added a `ninja-release` test preset).
 
 ## Host differences
 | Host | Format | ARA? | Notes |

@@ -4,4 +4,4 @@ CONFIG="${1:-${CONFIG:-debug}}"
 source "$(dirname "$0")/_common.sh"
 cd "$ROOT"
 cmake --build --preset "$PRESET" --target restyle_tests
-ctest --preset ninja-debug
+ctest --preset "$PRESET"

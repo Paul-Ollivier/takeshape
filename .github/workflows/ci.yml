@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  macos:
+    # Apple Silicon runner. macOS minutes on private repos bill at 10x; keep this to one job.
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Ninja
+        run: brew install ninja
+
+      - name: Cache pluginval
+        uses: actions/cache@v4
+        with:
+          path: tools/pluginval.app
+          key: pluginval-v1.0.4-macos
+
+      - name: Build, test, install, auval, pluginval (release)
+        run: scripts/ci.sh release
+
+      - name: Upload pluginval logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pluginval-logs
+          path: build/pluginval
+          if-no-files-found: ignore

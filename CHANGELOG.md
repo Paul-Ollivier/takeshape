@@ -7,3 +7,5 @@
 - Region inspector editor: selected region's name, start, length; regions rendered by this instance.
 - Scripts: build, xcode, install, auval, pluginval, clean AU cache, test, CI.
 - Catch2 unit tests for `RealtimeEditGuard`.
+- GitHub Actions CI (macOS, release): build, unit tests, auval, pluginval strictness 5.
+- Fixed: `test.sh` ignored the release config; `xcode.sh` failed on macOS bash 3.2 without `RESTYLE_DEBUG_HOST`.
