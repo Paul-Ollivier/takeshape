@@ -6,5 +6,5 @@ cd "$ROOT"
 git submodule update --init --recursive
 EXTRA=()
 [[ -n "${RESTYLE_DEBUG_HOST:-}" ]] && EXTRA+=("-DRESTYLE_DEBUG_HOST=$RESTYLE_DEBUG_HOST")
-cmake --preset xcode "${EXTRA[@]}"
+cmake --preset xcode ${EXTRA[@]+"${EXTRA[@]}"}
 open "$ROOT/build-xcode/Restyle.xcodeproj"
