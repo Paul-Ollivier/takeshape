@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 #include "ui/RegionInspector.h"
 
-namespace restyle
+namespace takeshape
 {
 
 RegionInspector::RegionInspector (juce::ARAEditorView& view, juce::ARAPlaybackRenderer* r)
@@ -111,7 +111,7 @@ void RegionInspector::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (juce::FontOptions (20.0f, juce::Font::bold));
-    g.drawText ("Restyle", area.removeFromTop (28), juce::Justification::centredLeft);
+    g.drawText ("Takeshape", area.removeFromTop (28), juce::Justification::centredLeft);
     area.removeFromTop (12);
 
     auto line = [&] (const juce::String& text, float size, juce::Colour colour)
@@ -152,4 +152,4 @@ void RegionInspector::paint (juce::Graphics& g)
     }
 }
 
-} // namespace restyle
+} // namespace takeshape

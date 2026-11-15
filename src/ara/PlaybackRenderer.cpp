@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 #include "ara/PlaybackRenderer.h"
 
-namespace restyle
+namespace takeshape
 {
 
-SharedReadThread::SharedReadThread() : juce::TimeSliceThread ("Restyle ARA sample reader")
+SharedReadThread::SharedReadThread() : juce::TimeSliceThread ("Takeshape ARA sample reader")
 {
     startThread (Priority::high);   // above normal so playback is fluent, below realtime
 }
@@ -150,4 +150,4 @@ bool PlaybackRenderer::processBlock (juce::AudioBuffer<float>& buffer,
     return success;
 }
 
-} // namespace restyle
+} // namespace takeshape

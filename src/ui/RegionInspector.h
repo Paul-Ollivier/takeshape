@@ -7,7 +7,7 @@
 #include <optional>
 #include <vector>
 
-namespace restyle
+namespace takeshape
 {
 
 /**
@@ -64,4 +64,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (RegionInspector)
 };
 
-} // namespace restyle
+} // namespace takeshape

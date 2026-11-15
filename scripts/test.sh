@@ -4,5 +4,5 @@
 CONFIG="${1:-${CONFIG:-debug}}"
 source "$(dirname "$0")/_common.sh"
 cd "$ROOT"
-cmake --build --preset "$PRESET" --target restyle_tests
+cmake --build --preset "$PRESET" --target takeshape_tests
 ctest --preset "$PRESET"

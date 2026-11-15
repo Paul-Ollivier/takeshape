@@ -5,7 +5,7 @@
 #include <thread>
 #include <utility>
 
-namespace restyle
+namespace takeshape
 {
 
 /**
@@ -80,4 +80,4 @@ private:
     std::atomic<int> editDepth { 0 };
 };
 
-} // namespace restyle
+} // namespace takeshape

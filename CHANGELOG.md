@@ -8,7 +8,8 @@
 - Scripts: build, xcode, install, auval, pluginval, clean AU cache, test, CI.
 - Catch2 unit tests for `RealtimeEditGuard`.
 - GitHub Actions CI (macOS, release): build, unit tests, auval, pluginval strictness 5.
-- Fixed: `test.sh` ignored the release config; `xcode.sh` failed on macOS bash 3.2 without `RESTYLE_DEBUG_HOST`.
+- Fixed: `test.sh` ignored the release config; `xcode.sh` failed on macOS bash 3.2 without `TAKESHAPE_DEBUG_HOST`.
 - Project licensed AGPL-3.0-or-later: `LICENSE`, SPDX headers on all source/CMake/script files, `THIRD_PARTY.md` re-checked (VST3 SDK 3.8.0 bundled in JUCE is MIT).
 - Secret scanning: gitleaks pre-commit hook (`scripts/setup-hooks.sh`), `scripts/secret-scan.sh`, CI job.
 - Brief updated to the open-source version.
+- Renamed to **Takeshape**: AU `aufx Tksp Tksh`, bundle `io.github.paul-ollivier.takeshape`, matching ARA factory/archive IDs.

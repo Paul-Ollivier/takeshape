@@ -1,4 +1,4 @@
-# Project brief for Claude Code — "Restyle" (working title)
+# Project brief for Claude Code — "Takeshape"
 
 > Paste this whole file as your first message in Claude Code, or save it as `CLAUDE.md` at the repo root.
 

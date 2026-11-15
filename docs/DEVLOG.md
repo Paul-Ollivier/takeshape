@@ -68,6 +68,22 @@
   Python `pre-commit` framework, so there is no extra toolchain. CI runs a full-history scan on Linux (cheap) with a pinned release.
 - History scan at this point: no leaks found.
 
+## 2026-11-15 — Renamed to Takeshape
+
+**Decisions**
+- Name: **Takeshape** (one word, capital T). No audio product uses it; TakeShape is an unrelated headless-CMS
+  company (owns takeshape.com/.io and the `takeshape` GitHub org), so trademark risk is low but plain web search is shared.
+- Final plug-in identity, replacing the M0 placeholders above:
+  - AU manufacturer `Tksh`, plug-in code `Tksp`, AU type `aufx`; company name shown in hosts: `Takeshape`.
+  - Bundle ID `io.github.paul-ollivier.takeshape` (a domain we control: the GitHub Pages user domain).
+  - ARA factory `io.github.paul-ollivier.takeshape.arafactory.<version>`, archive `io.github.paul-ollivier.takeshape.aradocumentarchive.1`.
+  - **Don't change these again after users save projects**: hosts key saved plug-ins and ARA archives on them.
+- Brief renamed to `CLAUDE_CODE_PROMPT.md`. C++ namespace `takeshape`; CMake options `TAKESHAPE_*`.
+- Old `Restyle.component` / `Restyle.vst3` removed from `~/Library/Audio/Plug-Ins` so Logic doesn't list both.
+
+**Gotcha**
+- After renaming, delete `build/ninja-*` and `build-xcode`: old `Restyle_*` targets and caches linger otherwise.
+
 ## Host differences
 | Host | Format | ARA? | Notes |
 |---|---|---|---|

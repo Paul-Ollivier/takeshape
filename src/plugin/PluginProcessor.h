@@ -3,7 +3,7 @@
 
 #include <juce_audio_processors/juce_audio_processors.h>
 
-namespace restyle
+namespace takeshape
 {
 
 /**
@@ -11,7 +11,7 @@ namespace restyle
     PlaybackRenderer bound to this instance via AudioProcessorARAExtension.
 
     Without an ARA host (Standalone, non-ARA hosts, pluginval's non-ARA tests) it outputs
-    silence: Restyle is region-based and has no meaningful insert-effect behaviour.
+    silence: Takeshape is region-based and has no meaningful insert-effect behaviour.
 */
 class PluginProcessor final : public juce::AudioProcessor,
                               public juce::AudioProcessorARAExtension
@@ -52,4 +52,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginProcessor)
 };
 
-} // namespace restyle
+} // namespace takeshape

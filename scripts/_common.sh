@@ -2,10 +2,10 @@
 # Sourced by the other scripts. Keep plugin identity in sync with src/CMakeLists.txt.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PLUGIN_NAME="Restyle"
+PLUGIN_NAME="Takeshape"
 AU_TYPE="aufx"
-AU_SUBTYPE="Rsty"          # PLUGIN_CODE
-AU_MANUFACTURER="Dawi"     # PLUGIN_MANUFACTURER_CODE
+AU_SUBTYPE="Tksp"          # PLUGIN_CODE
+AU_MANUFACTURER="Tksh"     # PLUGIN_MANUFACTURER_CODE
 CONFIG="${CONFIG:-debug}"  # debug | release
 PRESET="ninja-${CONFIG}"
 CMAKE_CONFIG="$(tr '[:lower:]' '[:upper:]' <<< "${CONFIG:0:1}")${CONFIG:1}"
