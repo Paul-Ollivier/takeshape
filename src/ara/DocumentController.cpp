@@ -2,7 +2,7 @@
 #include "ara/DocumentController.h"
 #include "ara/PlaybackRenderer.h"
 
-namespace restyle
+namespace takeshape
 {
 
 void DocumentController::willBeginEditing (juce::ARADocument*)
@@ -44,11 +44,11 @@ bool DocumentController::doStoreObjectsToStream (juce::ARAOutputStream& output,
         && output.writeInt64 (0);
 }
 
-} // namespace restyle
+} // namespace takeshape
 
 //==============================================================================
 // Required entry point for IS_ARA_EFFECT plugins (alongside createPluginFilter()).
 const ARA::ARAFactory* JUCE_CALLTYPE createARAFactory()
 {
-    return juce::ARADocumentControllerSpecialisation::createARAFactory<restyle::DocumentController>();
+    return juce::ARADocumentControllerSpecialisation::createARAFactory<takeshape::DocumentController>();
 }

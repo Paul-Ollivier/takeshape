@@ -1,6 +1,6 @@
-# Restyle: notes for Claude Code
+# Takeshape: notes for Claude Code
 
-- The product brief and working agreement are in `CLAUDE_CODE_PROMPT-DAWIA.md`. Read it first.
+- The product brief and working agreement are in `CLAUDE_CODE_PROMPT.md`. Read it first.
 - Current milestone: **M0** (see `CHANGELOG.md`). Stop and report at the end of each milestone.
 - CMake is the source of truth. Never edit `build-xcode/*.xcodeproj`.
 - The project is open source (AGPL-3.0-or-later) and the repo is public. Before adding any dependency, check that its license is AGPLv3-compatible and record it in `THIRD_PARTY.md`. Ask first for anything not clearly compatible.

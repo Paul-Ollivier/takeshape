@@ -1,7 +1,7 @@
-# Restyle (working title)
+# Takeshape
 
 ARA 2 audio plug-in: select a region in your DAW, type a prompt, get AI-transformed alternate
-takes of that region, in place. Model-agnostic, BYOK. Full brief: [`CLAUDE_CODE_PROMPT-DAWIA.md`](CLAUDE_CODE_PROMPT-DAWIA.md).
+takes of that region, in place. Model-agnostic, BYOK. Full brief: [`CLAUDE_CODE_PROMPT.md`](CLAUDE_CODE_PROMPT.md).
 
 **Status:** M0 (toolchain skeleton): ARA pass-through playback plus a region inspector.
 
@@ -21,7 +21,7 @@ scripts/setup-hooks.sh           # enable the gitleaks pre-commit hook
 |---|---|
 | CLI build (Ninja, Debug) | `scripts/build.sh` (or `scripts/build.sh release`) |
 | Unit tests | `scripts/test.sh` |
-| Xcode project (generated, never hand-edit) | `scripts/xcode.sh` → `build-xcode/Restyle.xcodeproj` |
+| Xcode project (generated, never hand-edit) | `scripts/xcode.sh` → `build-xcode/Takeshape.xcodeproj` |
 | Install AU + VST3, ad-hoc sign, reset AU cache | `scripts/install.sh` |
 | Apple AU validation | `scripts/auval.sh` |
 | pluginval (strictness 5) | `scripts/pluginval.sh 5` (downloads pluginval into `tools/` on first run) |
@@ -30,7 +30,7 @@ scripts/setup-hooks.sh           # enable the gitleaks pre-commit hook
 | Everything (CI) | `scripts/ci.sh` |
 
 Debug builds copy AU/VST3 into `~/Library/Audio/Plug-Ins/` automatically
-(`-DRESTYLE_COPY_AFTER_BUILD=OFF` to disable).
+(`-DTAKESHAPE_COPY_AFTER_BUILD=OFF` to disable).
 
 ## Layout
 

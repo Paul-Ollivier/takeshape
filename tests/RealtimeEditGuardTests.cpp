@@ -6,7 +6,7 @@
 #include <atomic>
 #include <thread>
 
-using restyle::RealtimeEditGuard;
+using takeshape::RealtimeEditGuard;
 
 TEST_CASE ("RealtimeEditGuard: read succeeds when idle, fails during edit", "[rt]")
 {

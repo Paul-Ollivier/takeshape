@@ -6,11 +6,11 @@ FetchContent_Declare(Catch2
     GIT_SHALLOW    TRUE)
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(restyle_tests
+add_executable(takeshape_tests
     RealtimeEditGuardTests.cpp)
 
-target_link_libraries(restyle_tests PRIVATE restyle_core Catch2::Catch2WithMain)
-restyle_set_strict_warnings(restyle_tests)
+target_link_libraries(takeshape_tests PRIVATE takeshape_core Catch2::Catch2WithMain)
+takeshape_set_strict_warnings(takeshape_tests)
 
 include(Catch)
-catch_discover_tests(restyle_tests)
+catch_discover_tests(takeshape_tests)

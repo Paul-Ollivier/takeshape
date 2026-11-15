@@ -6,7 +6,7 @@
 
 #include "ui/RegionInspector.h"
 
-namespace restyle
+namespace takeshape
 {
 
 class PluginProcessor;
@@ -29,4 +29,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginEditor)
 };
 
-} // namespace restyle
+} // namespace takeshape

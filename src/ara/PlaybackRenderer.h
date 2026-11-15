@@ -9,7 +9,7 @@
 #include <map>
 #include <memory>
 
-namespace restyle
+namespace takeshape
 {
 
 /** One background thread per process (ref-counted via SharedResourcePointer) that fills the
@@ -68,4 +68,4 @@ private:
     bool useBufferedReaders = true;
 };
 
-} // namespace restyle
+} // namespace takeshape

@@ -5,7 +5,7 @@
 
 #include "core/RealtimeEditGuard.h"
 
-namespace restyle
+namespace takeshape
 {
 
 /**
@@ -45,4 +45,4 @@ private:
     RealtimeEditGuard editGuard;
 };
 
-} // namespace restyle
+} // namespace takeshape

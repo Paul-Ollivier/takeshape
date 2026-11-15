@@ -2,7 +2,7 @@
 #include "plugin/PluginProcessor.h"
 #include "plugin/PluginEditor.h"
 
-namespace restyle
+namespace takeshape
 {
 
 PluginProcessor::PluginProcessor()
@@ -55,10 +55,10 @@ juce::AudioProcessorEditor* PluginProcessor::createEditor()
     return new PluginEditor (*this);
 }
 
-} // namespace restyle
+} // namespace takeshape
 
 //==============================================================================
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new restyle::PluginProcessor();
+    return new takeshape::PluginProcessor();
 }

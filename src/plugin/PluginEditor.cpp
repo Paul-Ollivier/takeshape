@@ -2,7 +2,7 @@
 #include "plugin/PluginEditor.h"
 #include "plugin/PluginProcessor.h"
 
-namespace restyle
+namespace takeshape
 {
 
 PluginEditor::PluginEditor (PluginProcessor& p)
@@ -30,8 +30,8 @@ void PluginEditor::paint (juce::Graphics& g)
     {
         g.setColour (juce::Colours::white.withAlpha (0.8f));
         g.setFont (juce::FontOptions (15.0f));
-        g.drawFittedText ("Restyle works on audio regions via ARA.\n"
-                          "Load it as an ARA plug-in (Logic Pro: select a region, then choose Restyle "
+        g.drawFittedText ("Takeshape works on audio regions via ARA.\n"
+                          "Load it as an ARA plug-in (Logic Pro: select a region, then choose Takeshape "
                           "from the region's ARA plug-in menu).",
                           getLocalBounds().reduced (24), juce::Justification::centred, 4);
     }
@@ -43,4 +43,4 @@ void PluginEditor::resized()
         inspector->setBounds (getLocalBounds());
 }
 
-} // namespace restyle
+} // namespace takeshape
