@@ -13,3 +13,4 @@
 - Secret scanning: gitleaks pre-commit hook (`scripts/setup-hooks.sh`), `scripts/secret-scan.sh`, CI job.
 - Brief updated to the open-source version.
 - Renamed to **Takeshape**: AU `aufx Tksp Tksh`, bundle `io.github.paul-ollivier.takeshape`, matching ARA factory/archive IDs.
+- Universal build (arm64 + x86_64): Logic Pro hosts ARA plug-ins only under Rosetta. `docs/DEBUGGING.md` corrected for Logic.

@@ -1,18 +1,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 cmake_minimum_required(VERSION 3.25)
 
+# macOS 14+, universal (arm64 + x86_64). x86_64 is required for ARA in Logic Pro: Logic can only host
+# ARA plug-ins when it runs under Rosetta (native Logic loads AUs out of process, without ARA; still
+# true in Logic 13.0). Set before project() so compiler checks use the same architectures.
+set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0" CACHE STRING "Minimum macOS version")
+if(NOT CMAKE_OSX_ARCHITECTURES)
+    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "Target architectures" FORCE)
+endif()
+
 project(Takeshape VERSION 0.0.1 LANGUAGES C CXX OBJC OBJCXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# macOS 14+, Apple Silicon first. Override on the command line to add x86_64 later.
-set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0" CACHE STRING "Minimum macOS version")
-if(NOT CMAKE_OSX_ARCHITECTURES)
-    set(CMAKE_OSX_ARCHITECTURES "arm64" CACHE STRING "Target architectures" FORCE)
-endif()
 
 option(TAKESHAPE_COPY_AFTER_BUILD "Copy AU/VST3 to ~/Library/Audio/Plug-Ins after each build" ON)
 option(TAKESHAPE_BUILD_TESTS "Build unit tests (fetches Catch2)" ON)

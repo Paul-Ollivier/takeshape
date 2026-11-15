@@ -12,18 +12,21 @@ Change the host: `TAKESHAPE_DEBUG_HOST="/Applications/REAPER.app" scripts/xcode.
 Test host is **`/Applications/Logic Pro.app`** (the perpetual licence). `Logic Pro Creator Studio.app`
 is also installed but isn't used for testing.
 
-## Logic Pro specifics (⚠️ verify on this machine; record results in DEVLOG)
-- **Out-of-process AUs.** Per the brief, Logic on Apple Silicon may host AUs outside its own process.
-  If breakpoints don't hit when Xcode launches Logic, the plug-in is running in a helper process. Use
-  **Debug > Attach to Process by PID or Name…** in Xcode, and find the process with
-  `ps aux | grep -i -E "AUHostingService|Logic"` *after* inserting the plug-in.
-- **Hardened runtime.** Attaching a debugger to a notarized, hardened app can be refused. If Xcode
-  can't attach to Logic or its helper, debug in **REAPER** (easiest), then confirm behaviour in Logic.
+## Logic Pro specifics (verified 2026-11-15, Logic Pro 13.0, macOS 27.2)
+- **ARA needs Logic under Rosetta.** Native Logic on Apple Silicon hosts AUs in a separate process
+  (`AUHostingServiceXPC_arrow`) and offers no ARA there: Takeshape loads as a plain effect (fallback text, silence).
+  Quit Logic, select `/Applications/Logic Pro.app` in Finder, **File > Get Info**, tick **Open using Rosetta**, relaunch.
+  Our AU/VST3 are universal (arm64 + x86_64) for this reason.
+- **Two entries.** Plug-in Manager lists **Takeshape** (type Effect, plain AU) and **Takeshape (ARA)** (type ARA). Use the (ARA) one.
+- **Where ARA shows up.** There is no ARA menu on regions. Select the audio track, then in its channel strip
+  (Inspector **I** or Mixer **X**) put **Audio Units > Takeshape > Takeshape (ARA)** in the **first Audio FX slot**.
+  The plug-in receives every region on that track. Press Play once so Logic transfers the regions, then click a region.
+- **Region selection.** Turn on **Logic Pro > Settings > General > Editing > Select track on region/marquee selection**
+  so selecting a region also selects its track, which is what drives the plug-in view.
+- **Debugging.** Under Rosetta the plug-in runs inside Logic's own (x86_64) process, so Xcode can attach to Logic directly.
+  Hardened runtime may refuse the attach; then debug in REAPER and confirm behaviour in Logic.
 - **AU cache.** After changing AU metadata (codes, name, version), quit Logic, run
   `scripts/clean-au-cache.sh`, and use **Logic Pro > Settings > Plug-in Manager > Reset & Rescan Selection** if needed.
-- **Where ARA shows up.** On an audio track: Mixer channel strip **Audio FX** slot > **Audio Units > Takeshape > Takeshape**.
-  Logic then lists the plug-in for the track's regions. ARA plug-ins also appear in the region's
-  **ARA** submenu (from the Control-click menu on a region) once they're on the track.
 
 ## Validation
 - `scripts/auval.sh`: Apple's validator. It must pass, or Logic disables the AU.

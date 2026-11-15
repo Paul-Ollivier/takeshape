@@ -84,9 +84,31 @@
 **Gotcha**
 - After renaming, delete `build/ninja-*` and `build-xcode`: old `Restyle_*` targets and caches linger otherwise.
 
+## 2026-11-15 — Logic: ARA requires Rosetta → universal build
+
+**Found while testing M0 in Logic Pro 13.0 (macOS 27.2.1, Apple Silicon)**
+- Native Logic loaded Takeshape in `AUHostingServiceXPC_arrow` (out of process) as a plain effect: editor showed the
+  non-ARA fallback, audio was silent. Logic only hosts ARA plug-ins when it runs **under Rosetta** (Apple support note,
+  Celemony, Synchro Arts; reportedly unchanged in Logic 13). ARA SDK 2.3's generic IPC library is postponed, so there is no
+  in-SDK path for out-of-process ARA either.
+- Plug-in Manager shows two rows: "Takeshape" (Effect) and "Takeshape (ARA)" (ARA). There is **no** ARA menu on regions;
+  insert on the track's first Audio FX slot. `docs/DEBUGGING.md` was wrong on both points; fixed.
+
+**Decision**
+- Build **universal (arm64 + x86_64)** by default so Rosetta Logic can load it. Costs roughly 2x compile time.
+  `auval` passes natively and under `arch -x86_64`.
+
+**Risk to track**
+- Apple is winding down Rosetta in releases after macOS 27. If Logic still lacks native ARA by then, Logic + ARA stops
+  working for everyone (Melodyne included). Watch Logic release notes; keep REAPER / Live 13 (native ARA) as fallback hosts.
+
+**Open**
+- The editor decides ARA vs fallback once, at construction. If a host opens the editor before binding the instance,
+  it stays on the fallback text. Fix: re-check on a message-thread timer or when binding completes.
+
 ## Host differences
 | Host | Format | ARA? | Notes |
 |---|---|---|---|
-| Logic Pro | AU | (to test) | |
+| Logic Pro 13.0 | AU | Rosetta only | Native: loads out of process, no ARA. Two Plug-in Manager rows (Effect / ARA). Insert on track, no region ARA menu. |
 | REAPER | VST3/AU | (to test) | |
 | Live 13 beta | VST3/AU | (to test) | Arrangement View only; one ARA plug-in per project. |
