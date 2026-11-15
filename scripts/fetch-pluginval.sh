@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Download Tracktion's pluginval (GPLv3 *tool* — used only for testing, never linked or shipped).
 source "$(dirname "$0")/_common.sh"
 VERSION="${PLUGINVAL_VERSION:-v1.0.4}"

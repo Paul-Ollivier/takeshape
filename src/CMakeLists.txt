@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # --- Pure C++ core (no JUCE): unit-testable, strict warnings ---------------------------------
 add_library(restyle_core INTERFACE)
 target_include_directories(restyle_core INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}")

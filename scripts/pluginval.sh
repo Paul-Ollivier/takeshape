@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Usage: scripts/pluginval.sh [strictness=5]  — validates the installed VST3 and AU.
 # Note: pluginval loads the plug-in WITHOUT ARA, so it exercises the non-ARA fallback path
 # (silence) plus state, bus layouts, threading and editor creation. ARA paths need a real host.

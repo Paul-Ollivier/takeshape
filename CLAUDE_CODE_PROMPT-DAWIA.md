@@ -12,6 +12,11 @@ Think "Suno Studio / ElevenLabs Music, but inside Logic", with **pluggable model
 The plugin is model-agnostic: the value is the workflow (region-native, takes, tempo/length
 conform, non-destructive), not any single model.
 
+**This is a free, open-source project (AGPLv3), not a commercial product.** The goal is to
+become the reference open-source integration of AI music models into DAWs: ship a convincing
+demo fast, be easy to contribute to (especially new backends), and be visible. Optimize for
+speed, clarity of code and docs, and contributor-friendliness over monetization.
+
 I'm a senior C++ / UI engineer (25 years, games). Don't over-explain C++; do explain
 ARA and JUCE-specific gotchas when they come up.
 
@@ -27,9 +32,15 @@ ARA and JUCE-specific gotchas when they come up.
    We never receive, store or log user audio. No telemetry containing audio or prompts.
 4. A first-run **terms screen**: the user confirms they own or have rights to the audio they
    send, and that outputs are governed by the chosen provider's terms.
-5. **Licensing hygiene:** track every dependency's license in `THIRD_PARTY.md`.
-   Flag anything GPL/AGPL immediately. JUCE is dual-licensed (AGPLv3 / commercial):
-   note the commercial-license requirement before any sale.
+5. **Licensing:** the project is **AGPLv3** (this lets us use JUCE under its AGPLv3 option,
+   no commercial JUCE license needed). Every dependency must be AGPLv3-compatible
+   (MIT, BSD, ISC, Apache 2.0, GPLv3, AGPLv3 are fine). Track each one with its license in
+   `THIRD_PARTY.md`. The ARA SDK is Apache 2.0. Check the VST3 SDK's current license and
+   flag any incompatibility. Add SPDX headers (`// SPDX-License-Identifier: AGPL-3.0-or-later`)
+   to every source file.
+6. **Public repo hygiene:** the repo is public from day one. No secrets, keys, personal paths,
+   signing identities or Team IDs in code, configs or history. Use `.env.example` /
+   `config.example.json` patterns; add a pre-commit secret scan (e.g. gitleaks).
 
 ## 3. Tech stack
 
@@ -165,13 +176,26 @@ What I know as of Nov 2026 (re-check all of it):
 - Visual feedback in the editor: waveform per take, job state, cost or credit hint if the API exposes it.
 - Investigate the local Stable Audio helper (spike only, write up findings).
 
-**M5 — Ship-readiness (later)**
-- Code signing + notarization, installer (pkg), licensing (I'll decide: Paddle / Lemon Squeezy / Gumroad),
-  first-run terms screen, crash reporting without user content.
+**M5 — Open-source release**
+- GitHub Actions CI: build AU + VST3 on macOS, unit tests, pluginval, artifacts on tag.
+- Signed + notarized `.pkg` on GitHub Releases (signing secrets only in CI secrets; document
+  how forks build unsigned). Homebrew cask is a nice-to-have.
+- `README.md` with demo GIF/video, install, BYOK setup per provider, supported hosts and known
+  limitations (e.g. Live 13: one ARA plugin per project, Arrangement View only).
+- `CONTRIBUTING.md` + **`docs/ADDING_A_BACKEND.md`**: a step-by-step guide plus a minimal
+  example backend, so contributors can add a model in an afternoon. Issue templates
+  (bug / host compatibility / new backend), `CODE_OF_CONDUCT.md`, `SECURITY.md`
+  (how to report key-leak or security issues).
+- First-run terms screen; optional crash reporting that is **opt-in** and never includes user audio or prompts.
+- Optional later: GitHub Sponsors link; paid convenience builds are *not* in scope now.
 
 ## 7. Working agreement
 
 - Start by **reading this brief, then propose the repo layout and an M0 plan**. Wait for my OK.
+- Code is read by strangers: clear module boundaries, a short doc comment on every public
+  interface, no clever tricks without a comment. `IBackend` is the public contract for
+  contributors, so keep it stable, versioned and documented.
+- Use Conventional Commits; keep `main` always buildable.
 - Small, reviewable commits; one milestone per branch; a short `CHANGELOG.md`.
 - When something is ambiguous or costly to undo (dependency choice, threading model,
   persistence format), **ask me first** with 2–3 options and your recommendation.

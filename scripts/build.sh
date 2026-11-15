@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Usage: scripts/build.sh [debug|release]   — Ninja build (fast CLI). Copies AU/VST3 into
 # ~/Library/Audio/Plug-Ins automatically (RESTYLE_COPY_AFTER_BUILD=ON).
 CONFIG="${1:-${CONFIG:-debug}}"

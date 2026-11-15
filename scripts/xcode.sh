@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Generate (or refresh) the Xcode project from CMake and open it. Never edit the .xcodeproj.
 # Optional: RESTYLE_DEBUG_HOST="/Applications/REAPER.app" scripts/xcode.sh
 source "$(dirname "$0")/_common.sh"

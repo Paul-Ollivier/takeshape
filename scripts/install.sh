@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Usage: scripts/install.sh [debug|release]
 # Copies AU + VST3 into ~/Library/Audio/Plug-Ins, ad-hoc signs them (required on Apple Silicon),
 # and resets the AU cache so Logic rescans.

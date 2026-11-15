@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 cmake_minimum_required(VERSION 3.25)
 
 project(Restyle VERSION 0.0.1 LANGUAGES C CXX OBJC OBJCXX)

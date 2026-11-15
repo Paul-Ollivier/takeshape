@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Validate the installed AU with Apple's auval (what Logic runs on first scan).
 source "$(dirname "$0")/_common.sh"
 "$(dirname "$0")/clean-au-cache.sh" >/dev/null

@@ -10,7 +10,9 @@ takes of that region, in place. Model-agnostic, BYOK. Full brief: [`CLAUDE_CODE_
 ```sh
 xcode-select --install          # or full Xcode from the App Store (required for the Xcode workflow)
 brew install cmake ninja
+brew install gitleaks            # secret scan (pre-commit hook + CI)
 git submodule update --init --recursive   # JUCE 9.0.5 + ARA SDK 2.3.0
+scripts/setup-hooks.sh           # enable the gitleaks pre-commit hook
 ```
 
 ## Build and run
@@ -24,6 +26,7 @@ git submodule update --init --recursive   # JUCE 9.0.5 + ARA SDK 2.3.0
 | Apple AU validation | `scripts/auval.sh` |
 | pluginval (strictness 5) | `scripts/pluginval.sh 5` (downloads pluginval into `tools/` on first run) |
 | Force AU rescan | `scripts/clean-au-cache.sh` |
+| Secret scan (full history) | `scripts/secret-scan.sh` |
 | Everything (CI) | `scripts/ci.sh` |
 
 Debug builds copy AU/VST3 into `~/Library/Audio/Plug-Ins/` automatically
@@ -46,3 +49,13 @@ tests/                    Catch2 tests for src/core
 scripts/                  build, install, auval, pluginval, AU cache, CI
 docs/                     DEVLOG, ARCHITECTURE (threading), DEBUGGING, backends/
 ```
+
+## Contributing
+
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/). Every source file starts with
+`SPDX-License-Identifier: AGPL-3.0-or-later`. Never commit keys, signing identities or Team IDs;
+the gitleaks hook and CI check every commit. A full `CONTRIBUTING.md` lands in M5.
+
+## License
+
+[AGPL-3.0-or-later](LICENSE). Third-party components and their licenses: [`THIRD_PARTY.md`](THIRD_PARTY.md).

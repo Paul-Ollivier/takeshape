@@ -57,6 +57,17 @@
 - `scripts/test.sh` always ran the `ninja-debug` ctest preset; it now follows the build config
   (added a `ninja-release` test preset).
 
+## 2026-11-15 — Open-source pivot (AGPLv3)
+
+**Decisions**
+- Brief revised: free, open source, **AGPL-3.0-or-later**, public repo. JUCE is now used under its AGPLv3 option,
+  so no commercial licence is needed. The old "flag GPL/AGPL" rule becomes "every dependency must be AGPLv3-compatible".
+- VST3 SDK bundled in JUCE 9.0.5 is **3.8.0, MIT**: compatible.
+- SPDX headers on every C++/CMake/shell file (after the shebang in scripts).
+- Secret scan: gitleaks via a versioned `.githooks/pre-commit` (`git config core.hooksPath`) instead of the
+  Python `pre-commit` framework, so there is no extra toolchain. CI runs a full-history scan on Linux (cheap) with a pinned release.
+- History scan at this point: no leaks found.
+
 ## Host differences
 | Host | Format | ARA? | Notes |
 |---|---|---|---|
